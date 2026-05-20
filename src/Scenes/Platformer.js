@@ -14,6 +14,7 @@ class Platformer extends Phaser.Scene {
 
     init() {
         // variables and settings
+        this.game.loop.resetDelta(); // trying to fix lag that happens on replay
         win = false;
         totalScore = 0;
         playerHealth = 3;
