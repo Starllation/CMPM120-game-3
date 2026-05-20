@@ -453,6 +453,7 @@ class Platformer extends Phaser.Scene {
             if (trigger.name === 'door1') {
                 if (my.sprite.player.body.blocked.down && (Phaser.Input.Keyboard.JustDown(cursors.up) || Phaser.Input.Keyboard.JustDown(this.wKey) || Phaser.Input.Keyboard.JustDown(this.spaceKey))) {
                     if (this.hasKey === true) {
+                        this.sound.play('door', {volume: 0.5});
                         player.x = 2763; // coordinates of door2
                         player.y = 530;
                         this.crackerBlock = true;
@@ -489,6 +490,8 @@ class Platformer extends Phaser.Scene {
             }
             if (trigger.name === 'door2') {
                 if (my.sprite.player.body.blocked.down && (Phaser.Input.Keyboard.JustDown(cursors.up) || Phaser.Input.Keyboard.JustDown(this.wKey) || Phaser.Input.Keyboard.JustDown(this.spaceKey))) {
+                    this.sound.play('door', {volume: 0.5});
+                    this.crackerBlock = true;
                     player.x = 1665;
                     player.y = 530;
                 }

@@ -57,6 +57,7 @@ class Load extends Phaser.Scene {
         this.load.audio('clickSound', 'sound/click.ogg');
         this.load.audio('hurtSound', 'sound/hurt.mp3');
         this.load.audio('flagSound', 'sound/flag.mp3')
+        this.load.audio('door', '/sound/door.ogg');
 
 
 

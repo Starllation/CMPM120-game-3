@@ -101,7 +101,7 @@ class Box extends Phaser.GameObjects.Sprite {
 
 
         scoreBoxFail() {  
-            this.text1 = this.scene.add.text(this.x, this.y - 100, `Don't give up!`, {
+            this.text1 = this.scene.add.text(this.x, this.y - 100, `You can do it!`, {
                 fontSize: '32px',
                 fill: '#534200'
             });      
