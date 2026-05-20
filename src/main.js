@@ -22,20 +22,23 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: false,
             gravity: {
                 x: 0,
                 y: 0
             }
         }
     },
-    width: 1440,
-    height: 900,
-    scene: [Load, Platformer]
+    width: 800, // 800 per screen, 2400 for three screens
+    height: 600, 
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    scene: [Load, Platformer, End],
 }
 
 var cursors;
-const SCALE = 2.0;
 var my = {sprite: {}, text: {}};
 
 const game = new Phaser.Game(config);
