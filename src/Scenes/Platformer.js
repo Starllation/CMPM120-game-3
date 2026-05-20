@@ -120,7 +120,8 @@ class Platformer extends Phaser.Scene {
             gravityY: 900,
             alpha: {start: 1, end: 0},
             emitting: false,
-            angle: 90
+            angle: 90,
+            blendMode: 'ADD'
         });
 
         my.vfx.flag = this.add.particles(200, 400, "kenny-particles", {
@@ -135,6 +136,19 @@ class Platformer extends Phaser.Scene {
             duration: 10,
             gravityY: 800,
             angle: {min: -105, max: -75},
+            emitting: false
+        });
+
+        my.vfx.collect = this.add.particles(200, 400, "kenny-particles", {
+            frame: 'star_07.png', // exact frame from the atlas
+            speed: {min: 80, max: 100}, 
+            lifespan: 300,
+            scale: {start: 0.05, end: 0},
+            alpha: {start: 1, end: 0.1},
+            blendMode: 'ADD', 
+            quantity: 3,
+            emitting: true, // don't start emitting right away
+            duration: 3,
             emitting: false
         });
 
@@ -397,6 +411,8 @@ class Platformer extends Phaser.Scene {
         // Handle collision detection with coins
         this.physics.add.overlap(my.sprite.player, this.coinGroup, (player, coin) => {
             totalScore += 1;
+            my.vfx.collect.setPosition(coin.x, coin.y)
+            my.vfx.collect.explode();
             this.sound.play('coinSound',{volume: 0.8});
             coin.destroy(); // remove coin on overlap
         });
@@ -404,6 +420,8 @@ class Platformer extends Phaser.Scene {
         // overlap hearts
         this.physics.add.overlap(my.sprite.player, this.heartGroup, (player, heart) => {
             playerHealth += 1;
+            my.vfx.collect.setPosition(heart.x, heart.y)
+            my.vfx.collect.explode();
             this.sound.play('heartSound');
             heart.destroy(); 
         });
@@ -411,6 +429,8 @@ class Platformer extends Phaser.Scene {
         // overlap diamonds
         this.physics.add.overlap(my.sprite.player, this.diamondGroup, (player, diamond) => {
             totalScore += 100;
+            my.vfx.collect.setPosition(diamond.x, diamond.y)
+            my.vfx.collect.explode();
             totalDiamonds += 1;
             this.sound.play('diamondSound');
             diamond.destroy(); 
@@ -705,7 +725,7 @@ class Platformer extends Phaser.Scene {
             my.sprite.player.body.setVelocityY(this.JUMP_VELOCITY);      
 
              //vfxs
-            my.vfx.jumping.startFollow(my.sprite.player, my.sprite.player.displayWidth/2-10, my.sprite.player.displayHeight/2-5, false);
+            my.vfx.jumping.startFollow(my.sprite.player, my.sprite.player.displayWidth/2-10, my.sprite.player.displayHeight/2, false);
             // args for above (target to follow, x offset. /2 gets halfway point of player, y offset. /2 gets middle of player and -5 moves it above ground a little, false means particles will keep emitting even if player hidden temporarily)
             my.vfx.jumping.setParticleSpeed(this.PARTICLE_VELOCITY, 0);
             // Only play smoke effect if touching the ground
