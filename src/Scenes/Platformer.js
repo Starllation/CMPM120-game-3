@@ -32,6 +32,7 @@ class Platformer extends Phaser.Scene {
         this.hurtTimer = 0;
         this.crackerBlock = false;
         this.riding = false;
+        this.movingLayerPrevX = 0;
         this.hasKey = false;
         this.specialDonutHere = false;
         this.hmmPlayed = false;
@@ -440,6 +441,8 @@ class Platformer extends Phaser.Scene {
          // overlap keys
         this.physics.add.overlap(my.sprite.player, this.keysGroup, (player, key) => {
             this.sound.play('diamondSound');
+            my.vfx.collect.setPosition(key.x, key.y)
+            my.vfx.collect.explode();
             this.hasKey = true
             key.destroy(); 
         });
