@@ -20,11 +20,11 @@
             "scaleInDock": 1
         },
         "platformer-level-1.tmj": {
-            "scale": 6.8191,
-            "selectedLayer": 6,
+            "scale": 0.8797,
+            "selectedLayer": 16,
             "viewCenter": {
-                "x": 3465.120030502559,
-                "y": 576.1757416667888
+                "x": 2010.9128111856314,
+                "y": 289.8715471183358
             }
         },
         "platformer-level-1.tmj#kenny_tilemap_packed": {
