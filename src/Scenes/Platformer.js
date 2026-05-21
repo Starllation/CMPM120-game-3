@@ -554,11 +554,11 @@ class Platformer extends Phaser.Scene {
             console.log(playerHealth);
             if (this.currentCheckpoint != 0) {
                 my.sprite.player.x = this.currentCheckpoint.x
-                my.sprite.player.y = this.currentCheckpoint.y - 10
+                my.sprite.player.y = this.currentCheckpoint.y - 20
             }
             else {
                 my.sprite.player.x = 17
-                my.sprite.player.y = 528 - 10;
+                my.sprite.player.y = 528 - 20;
             }    
             this.isDead = false;
         });
